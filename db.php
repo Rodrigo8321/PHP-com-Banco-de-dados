@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pass = "root";  // Tente com senha vazia primeiro
+$user = "root";  //usuario
+$pass = "root";   //senha 
 $dbname = "cadastro";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
