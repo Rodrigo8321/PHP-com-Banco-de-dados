@@ -7,11 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $telephone = $_POST["telephone"];
 
     $sql = "INSERT INTO usuarios (name, email, telephone) VALUES ('$name', '$email', '$telephone')";
-
-    if ($conn->query($sql) === TRUE) {
+    if (mysql_query($sql)) {
         echo "<p style='color:green;'>Usuário cadastrado com sucesso!</p>";
     } else {
-        echo "<p style='color:red;'>Erro: " . $conn->error . "</p>";
+        echo "<p style='color:red;'>Erro: " . mysql_error() . "</p>";
     }
 }
 ?>
@@ -33,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <h2>Lista de Usuários</h2>
     <?php
-    $result = $conn->query("SELECT * FROM usuarios");
+    $result = mysql_query("SELECT * FROM usuarios");
 
-    if ($result->num_rows > 0) {
+    if (mysql_num_rows($result) > 0) {
         echo "<ul>";
-        while ($row = $result->fetch_assoc()) {
+        while ($row = mysql_fetch_assoc($result)) {
             echo "<li>{$row['name']} - {$row['email']} - {$row['telephone']}</li>";
         }
         echo "</ul>";
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "<p>Nenhum usuário cadastrado.</p>";
     }
 
-    $conn->close();
+    mysql_close();
     ?>
 </body>
 </html>
