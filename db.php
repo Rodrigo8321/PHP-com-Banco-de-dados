@@ -4,7 +4,8 @@ $user = "root";  //usuario
 $pass = "root";   //senha 
 $dbname = "cadastro";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = mysql_connect($servername, $username, $password);
+mysql_select_db($dbname, $conn);
 
 if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
